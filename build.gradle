@@ -1,0 +1,39 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.1'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
+	id "io.freefair.lombok" version "6.5.0.2"
+	id "com.diffplug.spotless" version "6.8.0"
+	id "com.gtramontina.ghooks.gradle" version "1.1.0"
+}
+
+group = 'ga.tumit'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.9'
+	implementation 'com.microsoft.sqlserver:mssql-jdbc'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+spotless {
+	java {
+		importOrder()
+		removeUnusedImports()
+		indentWithSpaces()
+		palantirJavaFormat()
+	}
+}
